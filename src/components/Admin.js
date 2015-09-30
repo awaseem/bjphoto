@@ -1,11 +1,14 @@
+/**
+ * Created by awaseem on 15-09-30.
+ */
+
 import React from 'react';
-import packageJSON from '../../package.json';
 
 export default React.createClass({
     render() {
         return (
             <div>
-                <h2>Powered by</h2>
+                <h2>Admin</h2>
             </div>
         );
     }
