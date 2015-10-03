@@ -3,15 +3,20 @@
  */
 
 import React from "react";
+import { History } from "react-router";
 import Error from "./errorMessage";
 import { login } from "../../../Lib/auth";
+import { setToken } from "../../../Config/token";
 
 export default React.createClass({
+    mixins: [ History ],
+
     getInitialState: function () {
         return {
             loginError: ""
         }
     },
+
     handleLogin: function (e) {
         e.preventDefault();
         let loginInfo = {
@@ -32,7 +37,8 @@ export default React.createClass({
         }
         login(loginInfo.username, loginInfo.password)
             .then((data) => {
-                console.log(data);
+                setToken(data.token);
+                this.props.history.replaceState(null, "/admin/dashboard");
             })
             .catch((err) => {
                 if (err.response.status === 400) {
@@ -43,6 +49,7 @@ export default React.createClass({
                 }
             })
     },
+
     render: function () {
         let errorMessage;
         if (this.state.loginError) {

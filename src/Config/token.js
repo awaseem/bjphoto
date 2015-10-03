@@ -10,4 +10,8 @@ let getToken = () => {
     return localStorage.getItem("bj-admin");
 };
 
-export { setToken, getToken };
+let deleteToken = () => {
+    localStorage.removeItem("bj-admin");
+};
+
+export { setToken, getToken, deleteToken };

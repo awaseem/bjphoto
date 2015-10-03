@@ -7,6 +7,6 @@ let baseURL = "http://localhost:8000/api/";
 export default {
     auth: {
         login:baseURL + "user/signin",
-        checkAuth: baseURL + "checkToken"
+        checkAuth: baseURL + "user/checkToken"
     }
 };
