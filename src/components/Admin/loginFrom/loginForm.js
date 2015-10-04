@@ -38,7 +38,7 @@ export default React.createClass({
         login(loginInfo.username, loginInfo.password)
             .then((data) => {
                 setToken(data.token);
-                this.props.history.replaceState(null, "/admin/dashboard");
+                this.props.loginCallback();
             })
             .catch((err) => {
                 if (err.response.status === 400) {

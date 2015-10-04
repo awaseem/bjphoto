@@ -5,7 +5,8 @@
 import React from 'react';
 import { Link } from "react-router";
 import LoginBox from "./loginFrom/loginForm";
-import { login, checkAuth } from  "../../Lib/auth.js";
+import Dashboard from "./dashboard/dashboard";
+import { login, checkAuth, logout } from  "../../Lib/auth.js";
 
 export default React.createClass({
     getInitialState: function () {
@@ -13,22 +14,29 @@ export default React.createClass({
             isLoggedIn: checkAuth()
         }
     },
+    logout: function () {
+        logout();
+        this.setState({
+            isLoggedIn: false
+        })
+    },
+    login: function () {
+        this.setState({
+            isLoggedIn: true
+        })
+    },
     render: function () {
-        let loginOrDash;
-        let logout;
+        let loginBox;
         if (this.state.isLoggedIn) {
-            loginOrDash = <Link className="ui large blue button" to="/admin/dashboard">Dashboard</Link>;
-            logout = <Link className="ui large red button" to="/admin/logout">Logout</Link>;
+            loginBox = <Dashboard logoutCallback={this.logout}/>;
         }
         else {
-            loginOrDash = <Link className="medium ui green button" to="/admin/login">Login</Link>;
+            loginBox = <LoginBox loginCallback={this.login}/>;
         }
         return (
             <div>
                 <h2>Admin</h2>
-                {loginOrDash}
-                {logout}
-                {this.props.children}
+                {loginBox}
             </div>
         );
     }

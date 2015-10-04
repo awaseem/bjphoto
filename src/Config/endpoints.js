@@ -8,5 +8,8 @@ export default {
     auth: {
         login:baseURL + "user/signin",
         checkAuth: baseURL + "user/checkToken"
+    },
+    image: {
+        base: baseURL + "image"
     }
 };

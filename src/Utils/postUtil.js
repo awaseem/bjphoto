@@ -24,7 +24,8 @@ let post = (url, jsonData) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(jsonData)
-    }).then(statusMiddleware)
+    })
+        .then(statusMiddleware)
         .then(jsonResponseMiddleware);
 };
 

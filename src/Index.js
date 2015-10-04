@@ -6,7 +6,6 @@ import About from './components/About';
 import Admin from "./components/Admin/Admin";
 import LoginBox from "./components/Admin/loginFrom/loginForm";
 import Dashboard from "./components/Admin/dashboard/dashboard";
-import Logout from "./components/Admin/loginFrom/logout";
 import { checkAuth as auth } from "./Lib/auth";
 
 window.React = React;
@@ -23,11 +22,7 @@ React.render(
             <Route path="/about" component={About}/>
             <Route path="/poweredby" component={PoweredBy}/>
         </Route>
-        <Route path="/admin" component={Admin}>
-            <Route path="login" component={LoginBox}/>
-            <Route path="logout" component={Logout}/>
-            <Route path="dashboard" component={Dashboard} onEnter={checkAuth}/>
-        </Route>
+        <Route path="/admin" component={Admin}></Route>
     </Router>
     , document.getElementById('content')
 );

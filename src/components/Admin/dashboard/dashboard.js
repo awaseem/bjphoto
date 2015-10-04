@@ -3,11 +3,17 @@
  */
 
 import React from "react";
+import Upload from "./uploadPicture";
 
 export default React.createClass({
     render: function () {
         return (
-            <h2>Hello</h2>
+            <div>
+                <h2>Dashboard</h2>
+                <button className="ui red button" onClick={this.props.logoutCallback}>Logout</button>
+                <br/>
+                <Upload/>
+            </div>
         )
     }
 });
