@@ -7,7 +7,6 @@ import { getToken } from "../Config/token";
 import endpoints from  "../Config/endpoints";
 
 let uploadImage = (title, description, imageData) => {
-    console.log(getToken());
     return post(endpoints.image.base, {
         token: getToken(),
         name: title,

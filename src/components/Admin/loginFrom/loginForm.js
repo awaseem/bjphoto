@@ -4,7 +4,7 @@
 
 import React from "react";
 import { History } from "react-router";
-import Error from "./errorMessage";
+import Error from "../../compLib/errorMessage";
 import { login } from "../../../Lib/auth";
 import { setToken } from "../../../Config/token";
 
