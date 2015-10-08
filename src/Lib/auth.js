@@ -2,7 +2,6 @@
  * Created by awaseem on 15-09-30.
  */
 
-import fetch from "whatwg-fetch";
 import jwtDecode from "jwt-decode";
 import endpoints from "../Config/endpoints";
 import { post } from "../Utils/postUtil";

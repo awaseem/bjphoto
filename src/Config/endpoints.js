@@ -11,5 +11,8 @@ export default {
     },
     image: {
         base: baseURL + "image"
+    },
+    imgurApi: {
+        upload: "https://api.imgur.com/3/image"
     }
 };

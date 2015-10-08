@@ -6,12 +6,12 @@ import { post } from "../Utils/postUtil";
 import { getToken } from "../Config/token";
 import endpoints from  "../Config/endpoints";
 
-let uploadImage = (title, description, imageData) => {
+let uploadImage = (title, description, imageUrl) => {
     return post(endpoints.image.base, {
         token: getToken(),
         name: title,
         description: description,
-        imageData: imageData
+        imageUrl: imageUrl
     })
 };
 

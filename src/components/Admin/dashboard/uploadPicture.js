@@ -6,6 +6,7 @@ import React from "react";
 import Error from "../../compLib/errorMessage";
 import Success from "../../compLib/successMessage";
 import { uploadImage } from "../../../Lib/image";
+import { uploadImgur } from  "../../../Lib/imgur";
 
 export default React.createClass({
     getInitialState: function () {
@@ -16,18 +17,26 @@ export default React.createClass({
     },
 
     uploadFile: function (title, description, imageData) {
-        uploadImage(title, description, imageData)
-            .then( () => {
-                this.setState({
-                    successMessage: "Successfully uploaded image!"
-                })
+        //uploadImage(title, description, imageData)
+        //    .then( () => {
+        //        this.setState({
+        //            successMessage: "Successfully uploaded image!"
+        //        })
+        //    })
+        //    .catch( (err) => {
+        //        err.response.json().then((data) => {
+        //            this.setState({
+        //                errorMessage: data.message
+        //            })
+        //        })
+        //    } )
+        uploadImgur(imageData)
+            .then( (data) => {
+                console.log(data);
+                //return uploadImage(title, description, )
             })
             .catch( (err) => {
-                err.response.json().then((data) => {
-                    this.setState({
-                        errorMessage: data.message
-                    })
-                })
+                console.log(err);
             } )
     },
 
