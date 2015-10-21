@@ -16,12 +16,13 @@ let jsonResponseMiddleware = (response) => {
     return response.json();
 };
 
-let post = (url, jsonData) => {
+let post = (url, jsonData, Auth) => {
     return fetch(url, {
         method: "post",
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Authorization": Auth
         },
         body: JSON.stringify(jsonData)
     })

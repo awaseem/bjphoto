@@ -5,6 +5,7 @@
 import React from "react";
 import Error from "../../compLib/errorMessage";
 import Success from "../../compLib/successMessage";
+import Loading from "../../compLib/loadingMessage";
 import { uploadImage } from "../../../Lib/image";
 import { uploadImgur } from  "../../../Lib/imgur";
 
@@ -12,32 +13,41 @@ export default React.createClass({
     getInitialState: function () {
         return {
             errorMessage: "",
-            successMessage: ""
+            successMessage: "",
+            uploadingPicture: false
         }
     },
 
     uploadFile: function (title, description, imageData) {
-        //uploadImage(title, description, imageData)
-        //    .then( () => {
-        //        this.setState({
-        //            successMessage: "Successfully uploaded image!"
-        //        })
-        //    })
-        //    .catch( (err) => {
-        //        err.response.json().then((data) => {
-        //            this.setState({
-        //                errorMessage: data.message
-        //            })
-        //        })
-        //    } )
+        this.setState({
+            uploadingPicture: true
+        });
         uploadImgur(imageData)
-            .then( (data) => {
-                console.log(data);
-                //return uploadImage(title, description, )
+            .then( (imgurRes) => {
+                return uploadImage(title, description, imgurRes.data.link);
+            })
+            .then( () => {
+                this.setState({
+                    successMessage:"Successfully uploaded image!",
+                    uploadingPicture: false
+                });
             })
             .catch( (err) => {
-                console.log(err);
-            } )
+                if (err.response) {
+                    err.response.json().then((data) => {
+                        this.setState({
+                            errorMessage: data.message,
+                            uploadingPicture: false
+                        })
+                    });
+                }
+                else {
+                    this.setState({
+                        errorMessage: "Error: failed to upload image due to unknown!",
+                        uploadingPicture: false
+                    })
+                }
+            } );
     },
 
     handleSubmit: function (e) {
@@ -63,6 +73,8 @@ export default React.createClass({
 
     render: function () {
         let error;
+        let loadingState;
+        let disableButton = false;
         if (this.state.errorMessage) {
             error = <Error errorMessage={this.state.errorMessage}/>;
         }
@@ -71,8 +83,12 @@ export default React.createClass({
                 <Success successMessage={this.state.successMessage}/>
             );
         }
-        else {
-            return (
+        if (this.state.uploadingPicture) {
+            disableButton = true;
+            loadingState = <Loading loadingMessage="Uploading Picture"/>;
+        }
+        return (
+            <div className="ui segment">
                 <form onSubmit={this.handleSubmit}>
                     <div className="ui form">
                         <div className="field">
@@ -90,11 +106,12 @@ export default React.createClass({
                                 <input type="file" ref="image" name="photo" style={{ display: "none" }}/>
                             </label>
                         </div>
-                        <input className="ui button"  type="submit" value="Upload Image"/>
+                        <input className={disableButton ? "ui button disabled" : "ui button"} type="submit" value="Upload Image"/>
                     </div>
                     {error}
+                    {loadingState}
                 </form>
-            );
-        }
+            </div>
+        );
     }
 });
