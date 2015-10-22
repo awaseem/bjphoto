@@ -53,9 +53,9 @@ export default React.createClass({
     handleSubmit: function (e) {
         e.preventDefault();
 
-        let title = React.findDOMNode(this.refs.title).value.trim();
-        let description = React.findDOMNode(this.refs.description).value.trim();
-        let image = React.findDOMNode(this.refs.image).files[0];
+        let title = this.refs.title.value.trim();
+        let description = this.refs.description.value.trim();
+        let image = this.refs.image.files[0];
 
         if (!image || !description || !title) {
             return this.setState({
@@ -68,7 +68,7 @@ export default React.createClass({
             let imageData = event.target.result.match(/,(.*)$/)[1];
             this.uploadFile(title, description, imageData);
         };
-        reader.readAsDataURL(React.findDOMNode(this.refs.image).files[0]);
+        reader.readAsDataURL(this.refs.image.files[0]);
     },
 
     render: function () {

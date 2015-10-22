@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Router, Route } from 'react-router';
 import App from './components/App';
 import PoweredBy from './components/Powered-by';
@@ -16,7 +17,7 @@ let checkAuth = function (nextState, replaceState) {
     }
 };
 
-React.render(
+ReactDOM.render(
     <Router>
         <Route path="/" component={App}>
             <Route path="/about" component={About}/>

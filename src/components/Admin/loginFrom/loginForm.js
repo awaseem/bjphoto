@@ -20,8 +20,8 @@ export default React.createClass({
     handleLogin: function (e) {
         e.preventDefault();
         let loginInfo = {
-            username: React.findDOMNode(this.refs.username).value.trim(),
-            password: React.findDOMNode(this.refs.password).value.trim()
+            username: this.refs.username.value.trim(),
+            password: this.refs.password.value.trim()
         };
         if (!loginInfo.username && !loginInfo.password) {
             this.setState({ loginError: "You need a username and password to log in!"});
