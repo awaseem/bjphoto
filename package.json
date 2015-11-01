@@ -57,6 +57,7 @@
     "jwt-decode": "^1.4.0",
     "map-stream": "0.0.6",
     "react": "^0.14.0",
+    "react-addons-css-transition-group": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3",
     "require-dot-file": "^0.4.0",

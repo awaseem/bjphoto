@@ -6,6 +6,7 @@ import React from "react";
 import Error from "../../compLib/errorMessage";
 import Success from "../../compLib/successMessage";
 import Loading from "../../compLib/loadingMessage";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import { uploadImage } from "../../../Lib/image";
 import { uploadImgur } from  "../../../Lib/imgur";
 
@@ -36,7 +37,7 @@ export default React.createClass({
                 if (err.response) {
                     err.response.json().then((data) => {
                         this.setState({
-                            errorMessage: data.message,
+                            errorMessage: ( data.message || data.data.error),
                             uploadingPicture: false
                         })
                     });
@@ -108,8 +109,18 @@ export default React.createClass({
                         </div>
                         <input className={disableButton ? "ui button disabled" : "ui button"} type="submit" value="Upload Image"/>
                     </div>
-                    {error}
-                    {loadingState}
+                    <ReactCSSTransitionGroup transitionName={ {
+                        enter: "bounceIn",
+                        leave: "bounceOut"
+                    } } transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
+                        {error}
+                    </ReactCSSTransitionGroup>
+                    <ReactCSSTransitionGroup transitionName={ {
+                        enter: "fadeIn",
+                        leave: "fadeOut"
+                    } } transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
+                        {loadingState}
+                    </ReactCSSTransitionGroup>
                 </form>
             </div>
         );

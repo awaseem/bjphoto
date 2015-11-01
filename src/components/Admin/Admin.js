@@ -3,7 +3,6 @@
  */
 
 import React from 'react';
-import { Link } from "react-router";
 import LoginBox from "./loginFrom/loginForm";
 import Dashboard from "./dashboard/dashboard";
 import { login, checkAuth, logout } from  "../../Lib/auth.js";

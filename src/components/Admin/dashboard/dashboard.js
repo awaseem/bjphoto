@@ -3,9 +3,28 @@
  */
 
 import React from "react";
+import $ from "jquery";
 import Upload from "./uploadPicture";
 
 export default React.createClass({
+    getInitialState: function () {
+        return {
+            logoutDisabled: false
+        }
+    },
+
+    enableLogout: function () {
+        this.setState({
+            logoutDisabled: false
+        })
+    },
+
+    disableLogout: function () {
+        this.setState({
+            logoutDisabled: true
+        })
+    },
+
     render: function () {
         return (
             <div>
