@@ -5,6 +5,7 @@
 import React from "react";
 import $ from "jquery";
 import Upload from "./uploadPicture";
+import MedEditor from "./mediumEditor";
 
 export default React.createClass({
     getInitialState: function () {
@@ -32,6 +33,7 @@ export default React.createClass({
                 <button className="ui red button" onClick={this.props.logoutCallback}>Logout</button>
                 <br/>
                 <Upload/>
+                <MedEditor/>
             </div>
         )
     }
